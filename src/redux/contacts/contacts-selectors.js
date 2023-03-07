@@ -1,4 +1,6 @@
 export const getAllContacts = ({contacts}) => contacts.items;
+export const getError = ({contacts}) => contacts.error;
+export const getLoading = ({contacts}) => contacts.loading;
 
 export const getFilteredContacts = ({contacts, filter}) => {
     if (!filter) {

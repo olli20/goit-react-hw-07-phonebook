@@ -10,7 +10,7 @@ export const fetchAllContacts = createAsyncThunk(
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
-        }
+        };
     }
 );
 
@@ -18,7 +18,6 @@ const isDublicated = (name, contacts) => {
     const result = contacts.filter(contact => contact.name.toLowerCase() === name.toLowerCase()).length;
     return Boolean(result);
 };
-
 
 export const fetchAddContact = createAsyncThunk(
     'contacts/add/contact',
@@ -28,21 +27,21 @@ export const fetchAddContact = createAsyncThunk(
             return result;
         } catch (error) {
             return rejectWithValue(error.message);
-        }
+        };
     },
     {
-        condition: (data, {getState}) => {
+        condition: ({name}, {getState}) => {
             const {contacts} = getState();
-            if(isDublicated(data.name, contacts.items)) {
-                alert(`${data.name} is already in contacts`);
+            if(isDublicated(name, contacts.items)) {
+                alert(`${name} is already in contacts`);
                 return false;
-            }
-        },
+            };
+        }
     }
 );
 
 export const fetchDeleteContact = createAsyncThunk(
-    'contacts/deleteContact',
+    'contacts/delete/contact',
     async (id, {rejectWithValue}) => {
         try {
             await api.deleteContact(id);
