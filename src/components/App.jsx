@@ -45,7 +45,7 @@ const App = () => {
       <ContactForm onSubmit={submitHandler} contacts={contacts} />
       <h2>Contacts</h2>
       <Filter filter={filter} changeFilter={filterHandler} />
-      <ContactList contacts={filteredContacts} onRemoveContact={removeHandler} />
+      {filteredContacts?.length > 0 && <ContactList contacts={filteredContacts} onRemoveContact={removeHandler} />}
     </div>
   );
 }
