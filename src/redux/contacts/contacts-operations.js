@@ -8,8 +8,8 @@ export const fetchAllContacts = () => {
             dispatch(actions.fetchAllContactsRequest()); // request went
             const data = await api.getAllContactsFromServer();
             dispatch(actions.fetchAllContactsSuccess(data));
-        } catch({response}) {
-            dispatch(actions.fetchAllContactsError(response.data.message));
+        } catch(error) {
+            dispatch(actions.fetchAllContactsError(error.message));
         }
     }
     return func;
@@ -31,8 +31,9 @@ export const fetchAddContact = (data) => {
             dispatch(actions.fetchAddContactRequest());
             const result = await api.addContact(data);
             dispatch(actions.fetchAddContactSuccess(result));
-        } catch({response}) {
-            dispatch(actions.fetchAddContactError(response.data.message));
+        } catch(error) {
+            console.log(error);
+            dispatch(actions.fetchAddContactError(error.message));
         }
     }
     return func;
@@ -44,10 +45,9 @@ export const fetchDeleteContact = (id) => {
             dispatch(actions.fetchDeleteContactRequest());
             await api.deleteContact(id);
             dispatch(actions.fetchDeleteContactSuccess(id));
-        } catch({response}) {
-            console.log(response);
-            dispatch(actions.fetchDeleteContactError(response.data.message));
-            
+        } catch(error) {
+            console.log(error)
+            dispatch(actions.fetchDeleteContactError(error.message)); 
         }
     }
     return func;
