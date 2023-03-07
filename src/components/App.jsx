@@ -5,21 +5,17 @@ import ContactForm from './ContactForm';
 import Filter from './Filter';
 import ContactList from './ContactList';
 
-import styles from './app.module.scss';
-
 import { fetchAllContacts, fetchAddContact, fetchDeleteContact } from '../redux/contacts/contacts-operations';
-
 import { setFilter } from '../redux/filter/filter-slice';
-
 import { getAllContacts, getFilteredContacts } from '../redux/contacts/contacts-selectors';
 import { getFilter } from '../redux/filter/filter-selectors';
+
+import styles from './app.module.scss';
 
 const App = () => {
   const contacts = useSelector(getAllContacts);
   const filteredContacts = useSelector(getFilteredContacts);
   const filter = useSelector(getFilter);
-
-  console.log("App ", contacts);
 
   const dispatch = useDispatch();
 
