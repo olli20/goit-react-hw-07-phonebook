@@ -20,10 +20,10 @@ const ContactForm = ({onSubmit, contacts}) => {
     const handleSubmit = event => {
         event.preventDefault();
 
-        // const isNameAlreadyHere = contacts.filter(contact => contact.name.toLowerCase() === name.toLowerCase()).length;
-        // if(isNameAlreadyHere){
-        //    return alert(`${name} is already in contacts`);
-        // };
+        const isNameAlreadyHere = contacts.filter(contact => contact.name.toLowerCase() === name.toLowerCase()).length;
+        if(isNameAlreadyHere){
+           return alert(`${name} is already in contacts`);
+        };
 
         onSubmit({name, number});
         setState({...initialState});
