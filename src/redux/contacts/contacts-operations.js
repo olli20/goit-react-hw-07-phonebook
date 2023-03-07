@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../api/api-service';
 
 export const fetchAllContacts = createAsyncThunk(
-    "contacts/fetch/all",
+    "contacts/fetchAll",
     async(_, {rejectWithValue}) => {
         try {
             const data = await api.getAllContactsFromServer();
@@ -20,7 +20,7 @@ const isDublicated = (name, contacts) => {
 };
 
 export const fetchAddContact = createAsyncThunk(
-    'contacts/add/contact',
+    'contacts/addContact',
     async (data, {rejectWithValue}) => {
         try {
             const result = await api.addContact(data);
@@ -41,7 +41,7 @@ export const fetchAddContact = createAsyncThunk(
 );
 
 export const fetchDeleteContact = createAsyncThunk(
-    'contacts/delete/contact',
+    'contacts/deleteContact',
     async (id, {rejectWithValue}) => {
         try {
             await api.deleteContact(id);
